@@ -35,13 +35,13 @@ github:
   username: ajitdevkota             # change to your github username
 
 linkedin:
-  username: mantas-burcikas            # change to your twitter username
+  username: ajit-devkota            # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Mantas Burcikas
-  email: mantas.burcikas.2000@gmail.com             # change to your email address
+  name: Ajit Devkota
+  email: ajitdevkota@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - https://www.linkedin.com/in/ajit-devkota      # change to your linkedin homepage
