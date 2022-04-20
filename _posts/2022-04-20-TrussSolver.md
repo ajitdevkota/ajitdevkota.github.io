@@ -41,6 +41,8 @@ Consider the following truss structure.
 The following summarizes the input information.
 
 ```python
+E = 200*10**9 #(N/m^2)
+A = 0.005 #(m^2)
 # Node Information
 # Format: Node Number, X-coordinate, Y-coordinate
 nodes = np.array([[1,0,0],
@@ -283,19 +285,24 @@ Node 17: Ux = 0.00143 m, Uy = -0.00032 m
 Node 18: Ux = 0.0013 m, Uy = -0.0003 m
 Node 19: Ux = 0.0 m, Uy = 0.0 m
 ```
-Deformed Plot (Magnification Factor = 500)
-<p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/DeformedPlot.png" width = "" style="background-color:white;"> </p>
 
+<div style="align: left; text-align:center;">
+<img src="/_posts/2022-04-20-TrussSolver/DeformedPlot.png" />
+<span style="display:block;">Deformed Plot (Magnification Factor = 500)</span>
+</div>
 
 ### Verfication using ETABS
-The result was verfied using CSI ETABS. The following includes some of the relevant outputs.
-<p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/ETABSrxn.png" width = "" style="background-color:white;"> </p>
-<p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/ETABSmemberforces.png" width = "" style="background-color:white;"> </p>
+The result was verfied using CSI ETABS.
 
+<div style="align: left; text-align:center;">
+<img src="/_posts/2022-04-20-TrussSolver/ETABSrxn.png" />
+<span style="display:block;">Restraint reactions</span>
+</div>
 
-
-
-
+<div style="align: left; text-align:center;">
+<img src="/_posts/2022-04-20-TrussSolver/ETABSmemberforces.png" />
+<span style="display:block;">Axial force diagram</span>
+</div>
 
 
 
