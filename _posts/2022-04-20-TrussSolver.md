@@ -36,7 +36,7 @@ In this post, a working truss solver for 2D linear systems is discussed.
 
 Consider the following truss structure. 
 
-<p align="left"> <img src = "/_2022-04-20-TrussSolver/ExampleTruss.png" width = "" style="background-color:white;"> </p>
+<p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/ExampleTruss.png" width = "" style="background-color:white;"> </p>
 
 The following summarizes the input information.
 
@@ -115,7 +115,7 @@ restrainedDoF = [1,2,37,38]
 ```
 Following plot is obtained:
 
-<p align="left"> <img src = "/_2022-04-20-TrussSolver/PrePlot.png" width = "" style="background-color:white;"> </p>
+<p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/PrePlot.png" width = "" style="background-color:white;"> </p>
 
 The element length and orientation is (calculated in separated function) is used to determine the Global Member Stiffness Matrix as follows:
 
@@ -283,11 +283,11 @@ Node 17: Ux = 0.00143 m, Uy = -0.00032 m
 Node 18: Ux = 0.0013 m, Uy = -0.0003 m
 Node 19: Ux = 0.0 m, Uy = 0.0 m
 ```
-<p align="left"> <img src = "/_2022-04-20-TrussSolver/DeformedPlot.png" width = "" style="background-color:white;"> </p>
+<p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/DeformedPlot.png" width = "" style="background-color:white;"> </p>
 ### Verfication using ETABS
-The result was verfied using CSI ETABS. The following represents some of the relevant outputs.
-<p align="left"> <img src = "/_2022-04-20-TrussSolver/ETABSrxn.png" width = "" style="background-color:white;"> </p>
-<p align="left"> <img src = "/_2022-04-20-TrussSolver/ETABSmemberforces.png" width = "" style="background-color:white;"> </p>
+The result was verfied using CSI ETABS. The following includes some of the relevant outputs.
+<p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/ETABSrxn.png" width = "" style="background-color:white;"> </p>
+<p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/ETABSmemberforces.png" width = "" style="background-color:white;"> </p>
 
 
 
