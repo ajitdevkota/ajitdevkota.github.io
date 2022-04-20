@@ -283,7 +283,10 @@ Node 17: Ux = 0.00143 m, Uy = -0.00032 m
 Node 18: Ux = 0.0013 m, Uy = -0.0003 m
 Node 19: Ux = 0.0 m, Uy = 0.0 m
 ```
+Deformed Plot (Magnification Factor = 500)
 <p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/DeformedPlot.png" width = "" style="background-color:white;"> </p>
+
+
 ### Verfication using ETABS
 The result was verfied using CSI ETABS. The following includes some of the relevant outputs.
 <p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/ETABSrxn.png" width = "" style="background-color:white;"> </p>
