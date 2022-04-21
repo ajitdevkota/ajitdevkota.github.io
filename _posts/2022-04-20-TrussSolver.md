@@ -295,12 +295,12 @@ Node 19: Ux = 0.0 m, Uy = 0.0 m
 The result was verfied using CSI ETABS.
 
 <div style="align: left; text-align:center;">
-<img src="/_posts/2022-04-20-TrussSolver/ETABSrxn.png" />
+<img src="/_posts/2022-04-20-TrussSolver/ETABSrxn1.png" />
 <span style="display:block;">Restraint reactions</span>
 </div>
 <br>
 <div style="align: left; text-align:center;">
-<img src="/_posts/2022-04-20-TrussSolver/ETABSmemberforces.png" />
+<img src="/_posts/2022-04-20-TrussSolver/ETABSmemberforces1.png" />
 <span style="display:block;">Axial force diagram</span>
 </div>
 
