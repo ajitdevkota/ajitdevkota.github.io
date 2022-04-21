@@ -115,7 +115,7 @@ forceVector[27] = -25000 #(N)
 
 restrainedDoF = [1,2,37,38]
 ```
-Following plot is obtained:
+Confirming the plot:
 
 <p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/PrePlot.png" width = "" style="background-color:white;"> </p>
 
