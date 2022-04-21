@@ -298,7 +298,7 @@ The result was verfied using CSI ETABS.
 <img src="/_posts/2022-04-20-TrussSolver/ETABSrxn.png" />
 <span style="display:block;">Restraint reactions</span>
 </div>
-
+<br>
 <div style="align: left; text-align:center;">
 <img src="/_posts/2022-04-20-TrussSolver/ETABSmemberforces.png" />
 <span style="display:block;">Axial force diagram</span>
