@@ -1,5 +1,5 @@
 ---
-title: 2D Truss Solver using Direct Stiffness Method
+title: Python Based 2D Truss Solver
 author: Ajit Devkota
 date: 2022-04-20 20:55:00 +0800
 #categories: [Finite Element Analysis]
@@ -32,94 +32,14 @@ pin: false
 </script>
 
 ### Overview: 
-In this post, a working truss solver for 2D linear systems is discussed.
+In this post, a direct stiffness method based solver is discussed for 2D linear truss systems.
 
 Consider the following truss structure. 
 
 <p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/ExampleTruss.png" width = "" style="background-color:white;"> </p>
 
-The following summarizes the input information.
 
-```python
-E = 200*10**9 #(N/m^2)
-A = 0.005 #(m^2)
-# Node Information
-# Format: Node Number, X-coordinate, Y-coordinate
-nodes = np.array([[1,0,0],
-                  [2,0,4],
-                  [3,-2,6],
-                  [4,1,7],
-                  [5,-2,9],
-                  [6,3,10],
-                  [7,1,14],
-                  [8,8,11],                
-                  [9,5,15],
-                  [10,11,16],
-                  [11,14,11],
-                  [12,17,15],
-                  [13,19,10],
-                  [14,21,14],                 
-                  [15,21,7],
-                  [16,24,9],
-                  [17,22,4],
-                  [18,24,6],
-                  [19,22,0]])
-
-# Member Information
-# Format: Node i, Node j, E, A
-members = np.array([
-                   [1,2, E, A],
-                   [1,3, E, A],
-                   [2,3, E, A],
-                   [2,4, E, A],
-                   [3,4, E, A],
-                   [3,5, E, A],
-                   [4,5, E, A],
-                   [4,6, E, A],
-                   [5,6, E, A],
-                   [5,7, E, A],
-                   [6,7, E, A],
-                   [6,8, E, A],
-                   [6,9, E, A],
-                   [7,9, E, A],
-                   [8,9, E, A],
-                   [8,10, E, A],
-                   [8,11, E, A],
-                   [9,10, E, A],
-                   [10,11, E, A],
-                   [10,12, E, A],
-                   [11,12, E, A],
-                   [11,13, E, A],
-                   [12,13, E, A],
-                   [12,14, E, A],
-                   [13,14, E, A],
-                   [13,15, E, A],
-                   [13,16, E, A],
-                   [14,16, E, A],
-                   [15,16, E, A],
-                   [15,17, E, A],
-                   [15,18, E, A],
-                   [16,18, E, A],
-                   [17,18, E, A],
-                   [17,19, E, A],
-                   [18,19, E, A]
-                   ])
-
-nDoF = np.amax(nodes[:,0])*2
-forceVector = np.array([np.zeros(nDoF)]).T
-forceVector[13] = -25000 #(N)
-forceVector[17] = -25000 #(N)
-forceVector[19] = -25000 #(N)
-forceVector[23] = -25000 #(N)
-forceVector[27] = -25000 #(N)
-
-restrainedDoF = [1,2,37,38]
-```
-Confirming the plot:
-
-<p align="left"> <img src = "/_posts/2022-04-20-TrussSolver/PrePlot.png" width = "" style="background-color:white;"> </p>
-
-The element length and orientation is (calculated in separated function) is used to determine the Global Member Stiffness Matrix as follows:
+The Global Member Stiffness Matrix as follows:
 
 ```python
 #Global Member Stiffness Matrix
@@ -165,59 +85,8 @@ for delete in restrainedDoF:
 Ks = np.delete(Kp,(deleteRowcolumn), axis=0)
 Ks = np.delete(Ks,(deleteRowcolumn), axis=1)
 ```
-Determining the nodal displacements, reaction forces
 
-```python
-Ks_I = np.matrix(Ks).I 
-fV = forceVector
 
-#Reduce the Force Vector
-deleteRow = []
-for delete in restrainedDoF:
-    deleteRow.append(delete-1)
-reducedfV = np.delete(fV,(deleteRow), axis=0) #Delete rows
-
-#Solve for displacement
-U = np.matmul(Ks_I,reducedfV)
-
-#Construct Full Displacement Vector
-Ug = np.array([np.zeros(nDoF)]).T
-indexedrestrainedDoF = [x-1 for x in restrainedDoF]
-
-n = 0
-for i in np.arange(nDoF):
-       
-    if i in indexedrestrainedDoF:
-        Ug[i] = 0      
-    else:
-        Ug[i] = U[n]
-        n=n+1
-
-#Solve for Reactions
-Fg = np.matmul(Kp,Ug)
-
-#Solve for Member Forces
-mbrForces = np.array([])
-n=0
-for mbr in members:
-    Angle = theta[n]
-    Length = L[n]
-    n = n + 1
-    
-    node_i=mbr[0].astype(int)
-    node_j=mbr[1].astype(int)
-    c = math.cos(Angle)
-    s = math.sin(Angle)
-
-    T = np.array([
-                  [c,s,0,0],
-                  [0,0,c,s]
-    ])
-    disp = np.array([[Ug[2*node_i-2],Ug[2*node_i-1],Ug[2*node_j-2],Ug[2*node_j-1]]]).T    
-    disp_local = np.matmul(T,disp)[0]
-    F_axial = (A*E/Length)*(disp_local[1]-disp_local[0])
-    mbrForces = np.append(mbrForces,F_axial)
-```
 Summarizing the output results:
 
 ```
@@ -291,8 +160,7 @@ Node 19: Ux = 0.0 m, Uy = 0.0 m
 <span style="display:block;">Deformed Plot (Magnification Factor = 500)</span>
 </div>
 
-### Verfication using ETABS
-The result was verfied using CSI ETABS.
+### ETABS Verification
 
 <div style="align: left; text-align:center;">
 <img src="/_posts/2022-04-20-TrussSolver/ETABSrxn1.png" />
